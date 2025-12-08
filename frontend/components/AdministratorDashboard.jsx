@@ -37,7 +37,7 @@ export default function AdministratorDashboard({ onLogout }) {
 
   const fetchMessages = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/communication/messages');
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/communication/messages`);
       if (response.ok) {
         const data = await response.json();
         setMessages(data);
@@ -51,7 +51,7 @@ export default function AdministratorDashboard({ onLogout }) {
     if (!newMessage.trim()) return;
 
     try {
-      const response = await fetch('http://localhost:5000/api/communication/messages', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/communication/messages`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -80,7 +80,7 @@ export default function AdministratorDashboard({ onLogout }) {
       };
 
       // Fetch approved sellers
-      const sellersRes = await fetch('http://localhost:5000/api/administrator/sellers/approved', { headers });
+      const sellersRes = await fetch(`${import.meta.env.VITE_API_URL}/api/administrator/sellers/approved`, { headers });
       if (sellersRes.ok) {
         const sellersData = await sellersRes.json();
         // Map backend data to frontend structure if needed
@@ -119,7 +119,7 @@ export default function AdministratorDashboard({ onLogout }) {
       }
 
       // Fetch approved delivery agents
-      const agentsRes = await fetch('http://localhost:5000/api/administrator/delivery-agents/approved', { headers });
+      const agentsRes = await fetch(`${import.meta.env.VITE_API_URL}/api/administrator/delivery-agents/approved`, { headers });
       if (agentsRes.ok) {
         const agentsData = await agentsRes.json();
         const formattedAgents = agentsData.map(a => ({
@@ -197,7 +197,7 @@ export default function AdministratorDashboard({ onLogout }) {
   const handleToggleSellerConfirm = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/administrator/sellers/${id}/confirm`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/administrator/sellers/${id}/confirm`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -219,7 +219,7 @@ export default function AdministratorDashboard({ onLogout }) {
   const handleToggleAgentConfirm = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/administrator/delivery-agents/${id}/confirm`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/administrator/delivery-agents/${id}/confirm`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`

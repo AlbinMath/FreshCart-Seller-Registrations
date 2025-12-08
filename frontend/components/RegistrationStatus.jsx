@@ -24,7 +24,7 @@ export default function RegistrationStatus() {
       const isEmail = searchValue.includes('@');
       const queryParam = isEmail ? `email=${encodeURIComponent(searchValue)}` : `id=${searchValue}`;
 
-      const response = await fetch(`http://localhost:5000/api/registrations/status?${queryParam}`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/registrations/status?${queryParam}`);
 
       const data = await response.json();
 

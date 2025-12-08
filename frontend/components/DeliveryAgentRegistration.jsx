@@ -57,7 +57,7 @@ export default function DeliveryAgentRegistration() {
     console.log('Submitting registration:', formDataWithImages);
 
     try {
-      const response = await fetch('http://localhost:5000/api/registrations/delivery-agent', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/registrations/delivery-agent`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

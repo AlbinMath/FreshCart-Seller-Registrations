@@ -45,7 +45,7 @@ export default function AdminDashboard() {
 
   const fetchAnnouncements = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/announcements');
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/announcements`);
       if (response.ok) {
         const data = await response.json();
         setPosts(data);
@@ -59,7 +59,7 @@ export default function AdminDashboard() {
     if (newPost.title && newPost.content) {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5000/api/announcements', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/announcements`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ export default function AdminDashboard() {
   const handleDeletePost = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/announcements/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/announcements/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -107,7 +107,7 @@ export default function AdminDashboard() {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/admin/registrations', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/registrations`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -128,7 +128,7 @@ export default function AdminDashboard() {
       const type = userToApprove.type === 'delivery' ? 'deliveryagent' : 'seller';
       const token = localStorage.getItem('token');
 
-      const response = await fetch(`http://localhost:5000/api/admin/registration/${type}/${id}/status`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/registration/${type}/${id}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -161,7 +161,7 @@ export default function AdminDashboard() {
         const type = userToReject.type === 'delivery' ? 'deliveryagent' : 'seller';
         const token = localStorage.getItem('token');
 
-        const response = await fetch(`http://localhost:5000/api/admin/registration/${type}/${id}/status`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/registration/${type}/${id}/status`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -194,7 +194,7 @@ export default function AdminDashboard() {
       const type = user.type === 'delivery' ? 'deliveryagent' : 'seller';
       const token = localStorage.getItem('token');
 
-      const response = await fetch(`http://localhost:5000/api/admin/registration/${type}/${userId}/document/${docId}/status`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/registration/${type}/${userId}/document/${docId}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -234,7 +234,7 @@ export default function AdminDashboard() {
       const type = user.type === 'delivery' ? 'deliveryagent' : 'seller';
       const token = localStorage.getItem('token');
 
-      const response = await fetch(`http://localhost:5000/api/admin/registration/${type}/${userId}/document/${docId}/status`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/registration/${type}/${userId}/document/${docId}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -278,7 +278,7 @@ export default function AdminDashboard() {
   const fetchAdministrators = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/admin/Administrator', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/Administrator`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -296,7 +296,7 @@ export default function AdminDashboard() {
     if (newAdmin.name && newAdmin.email && newAdmin.password) {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5000/api/admin/Administrator', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/Administrator`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -324,7 +324,7 @@ export default function AdminDashboard() {
     if (confirm('Are you sure you want to delete this administrator?')) {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:5000/api/admin/Administrator/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/Administrator/${id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -366,7 +366,7 @@ export default function AdminDashboard() {
 
   const fetchMessages = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/communication/messages');
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/communication/messages`);
       if (response.ok) {
         const data = await response.json();
         setMessages(data);
@@ -380,7 +380,7 @@ export default function AdminDashboard() {
     if (!newMessage.trim()) return;
 
     try {
-      const response = await fetch('http://localhost:5000/api/communication/messages', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/communication/messages`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -499,7 +499,7 @@ export default function AdminDashboard() {
                       title: "Welcome to FreshCart!",
                       content: "We are delighted to have you on board. Explore your dashboard to manage your activities efficiently."
                     };
-                    const response = await fetch('http://localhost:5000/api/announcements', {
+                    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/announcements`, {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json',

@@ -15,7 +15,7 @@ export const uploadToCloudinary = async (file) => {
   formData.append('file', file);
 
   try {
-    const response = await fetch('http://localhost:5000/api/upload', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/upload`, {
       method: 'POST',
       body: formData,
     });
